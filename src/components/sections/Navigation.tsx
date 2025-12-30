@@ -55,7 +55,7 @@ export const Navigation = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-lg shadow-black/10 border-b border-border"
+          ? "bg-card/95 backdrop-blur-md shadow-lg shadow-sepia-900/10 border-b border-border"
           : "bg-transparent"
       )}
     >
@@ -66,14 +66,14 @@ export const Navigation = () => {
             href="#"
             className={cn(
               "text-xl font-bold tracking-tight transition-colors duration-300 font-serif",
-              isScrolled ? "text-foreground" : "text-primary-foreground"
+              isScrolled ? "text-foreground" : "text-cream-100"
             )}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="text-accent">⟨</span>
-            Engineer
-            <span className="text-accent">⟩</span>
+            <span className="text-accent">❧</span>
+            {" "}Engineer{" "}
+            <span className="text-accent">❧</span>
           </motion.a>
 
           {/* Desktop Navigation */}
@@ -85,21 +85,21 @@ export const Navigation = () => {
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium transition-all duration-200 rounded-lg uppercase tracking-wider",
+                    "relative px-4 py-2 text-sm font-medium transition-all duration-200 tracking-wider",
                     isScrolled
                       ? isActive
                         ? "text-accent"
-                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                        : "text-muted-foreground hover:text-foreground"
                       : isActive
-                        ? "text-accent"
-                        : "text-white/60 hover:text-primary-foreground hover:bg-white/10"
+                        ? "text-amber-400"
+                        : "text-cream-300/70 hover:text-cream-100"
                   )}
                 >
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeSection"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-accent"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -110,7 +110,7 @@ export const Navigation = () => {
               variant="hero"
               size="sm"
               onClick={() => scrollToSection("#contact")}
-              className="ml-4"
+              className="ml-4 bg-amber-500 hover:bg-amber-600 text-sepia-950"
             >
               Get in Touch
             </Button>
@@ -122,7 +122,7 @@ export const Navigation = () => {
             size="icon"
             className={cn(
               "md:hidden",
-              !isScrolled && "text-primary-foreground hover:bg-white/10"
+              !isScrolled && "text-cream-100 hover:bg-cream-100/10"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -173,7 +173,7 @@ export const Navigation = () => {
                       transition={{ delay: index * 0.05 }}
                       onClick={() => scrollToSection(item.href)}
                       className={cn(
-                        "flex items-center w-full text-left text-base font-medium transition-colors py-3 px-4 rounded-lg uppercase tracking-wider",
+                        "flex items-center w-full text-left text-base font-medium transition-colors py-3 px-4 rounded tracking-wider",
                         isActive
                           ? "text-accent bg-accent/10"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary"
@@ -193,7 +193,7 @@ export const Navigation = () => {
                 >
                   <Button
                     variant="hero"
-                    className="w-full mt-4"
+                    className="w-full mt-4 bg-amber-500 hover:bg-amber-600 text-sepia-950"
                     onClick={() => scrollToSection("#contact")}
                   >
                     Get in Touch
