@@ -61,23 +61,24 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        navy: {
-          900: "hsl(var(--navy-900))",
-          800: "hsl(var(--navy-800))",
-          700: "hsl(var(--navy-700))",
-          600: "hsl(var(--navy-600))",
+        noir: {
+          950: "hsl(var(--noir-950))",
+          900: "hsl(var(--noir-900))",
+          800: "hsl(var(--noir-800))",
+          700: "hsl(var(--noir-700))",
+          600: "hsl(var(--noir-600))",
         },
-        cyan: {
-          400: "hsl(var(--cyan-400))",
-          500: "hsl(var(--cyan-500))",
-          600: "hsl(var(--cyan-600))",
+        crimson: {
+          400: "hsl(var(--crimson-400))",
+          500: "hsl(var(--crimson-500))",
+          600: "hsl(var(--crimson-600))",
         },
-        slate: {
-          100: "hsl(var(--slate-100))",
-          200: "hsl(var(--slate-200))",
-          300: "hsl(var(--slate-300))",
-          400: "hsl(var(--slate-400))",
-          500: "hsl(var(--slate-500))",
+        ash: {
+          100: "hsl(var(--ash-100))",
+          200: "hsl(var(--ash-200))",
+          300: "hsl(var(--ash-300))",
+          400: "hsl(var(--ash-400))",
+          500: "hsl(var(--ash-500))",
         },
       },
       borderRadius: {
