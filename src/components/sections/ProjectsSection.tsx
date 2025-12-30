@@ -70,11 +70,11 @@ export const ProjectsSection = () => {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
 
   return (
-    <section id="projects" className="section-padding bg-primary relative overflow-hidden" ref={ref}>
+    <section id="projects" className="section-padding bg-secondary relative overflow-hidden" ref={ref}>
       {/* Background Elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
       </div>
 
       <div className="section-container relative z-10">
@@ -93,17 +93,16 @@ export const ProjectsSection = () => {
             <Layers className="w-4 h-4" />
             Portfolio
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary-foreground">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground" style={{ fontFamily: "'Playfair Display', serif" }}>
             Featured Projects
           </h2>
-          <p className="text-slate-400 mt-4 max-w-2xl mx-auto text-lg">
-            Real-world systems designed and built to solve complex industrial
-            challenges with modern technology.
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
+            Real-world systems designed and built to solve complex industrial challenges.
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid lg:grid-cols-2 gap-6">
+        {/* Projects Grid - Royal Square Cards */}
+        <div className="grid grid-cols-2 gap-4 lg:gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -112,112 +111,86 @@ export const ProjectsSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onMouseEnter={() => setHoveredProject(project.title)}
               onMouseLeave={() => setHoveredProject(null)}
-              className={cn(
-                "relative bg-navy-800/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border transition-all duration-500 group overflow-hidden",
-                hoveredProject === project.title
-                  ? "border-accent/40 shadow-2xl shadow-accent/10 -translate-y-1"
-                  : "border-navy-700 hover:border-navy-600"
-              )}
+              className="relative aspect-square bg-card/90 backdrop-blur-sm p-4 lg:p-6 border border-border transition-all duration-500 group overflow-hidden"
             >
+              {/* Corner ornaments */}
+              <div className="absolute top-2 left-2 w-4 h-4 border-l-2 border-t-2 border-accent/30" />
+              <div className="absolute top-2 right-2 w-4 h-4 border-r-2 border-t-2 border-accent/30" />
+              <div className="absolute bottom-2 left-2 w-4 h-4 border-l-2 border-b-2 border-accent/30" />
+              <div className="absolute bottom-2 right-2 w-4 h-4 border-r-2 border-b-2 border-accent/30" />
+
+              {/* Inner border */}
+              <div className="absolute inset-4 border border-accent/10 pointer-events-none" />
+
               {/* Featured Badge */}
               {project.featured && (
-                <div className="absolute top-4 right-4">
-                  <span className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider bg-accent/20 text-accent rounded-full">
-                    Featured
+                <div className="absolute top-4 right-4 z-20">
+                  <span className="px-2 py-0.5 text-[9px] lg:text-[10px] font-semibold uppercase tracking-wider bg-accent/20 text-accent">
+                    ★ Featured
                   </span>
                 </div>
               )}
 
-              {/* Hover gradient overlay */}
-              <div
-                className={cn(
-                  "absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-cyan-500/5 opacity-0 transition-opacity duration-500",
-                  hoveredProject === project.title && "opacity-100"
-                )}
-              />
-
               {/* Project Number */}
-              <div className="absolute top-6 left-6 text-6xl font-bold text-white/[0.03] select-none">
+              <div className="absolute top-4 left-4 text-4xl lg:text-5xl font-bold text-foreground/5 select-none" style={{ fontFamily: "'Playfair Display', serif" }}>
                 {String(index + 1).padStart(2, "0")}
               </div>
 
-              <div className="relative">
+              <div className="relative z-10 h-full flex flex-col pt-8">
                 {/* Project Title */}
-                <h3 className="text-xl font-semibold text-primary-foreground mb-3 group-hover:text-accent transition-colors duration-300">
+                <h3 className="text-sm lg:text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors duration-300" style={{ fontFamily: "'Playfair Display', serif" }}>
                   {project.title}
                 </h3>
 
                 {/* Problem Statement */}
-                <p className="text-slate-400 text-sm mb-5 leading-relaxed">
+                <p className="text-muted-foreground text-xs lg:text-sm mb-3 leading-relaxed line-clamp-2">
                   {project.problem}
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.stack.map((tech, techIndex) => (
-                    <motion.span
+                <div className="flex flex-wrap gap-1 lg:gap-1.5 mb-3">
+                  {project.stack.slice(0, 3).map((tech) => (
+                    <span
                       key={tech}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ delay: index * 0.1 + techIndex * 0.05 }}
-                      className={cn(
-                        "px-3 py-1.5 text-xs font-medium rounded-lg transition-all duration-300",
-                        hoveredProject === project.title
-                          ? "bg-accent/10 text-accent border border-accent/20"
-                          : "bg-navy-700 text-slate-300"
-                      )}
+                      className="px-2 py-0.5 text-[10px] lg:text-xs font-medium bg-secondary text-secondary-foreground"
                     >
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
 
                 {/* Key Outcomes */}
-                <div className="mb-6">
-                  <p className="text-xs font-semibold text-accent uppercase tracking-wide mb-3 flex items-center gap-2">
-                    <span className="w-4 h-px bg-accent" />
-                    Key Outcomes
-                  </p>
-                  <ul className="space-y-2.5">
-                    {project.outcomes.map((outcome, outcomeIndex) => (
-                      <motion.li
+                <div className="flex-1">
+                  <ul className="space-y-1">
+                    {project.outcomes.slice(0, 2).map((outcome) => (
+                      <li
                         key={outcome}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: index * 0.1 + outcomeIndex * 0.1 }}
-                        className="flex items-center gap-3 text-sm text-slate-400"
+                        className="flex items-start gap-2 text-[10px] lg:text-xs text-muted-foreground"
                       >
-                        <ArrowRight
-                          className={cn(
-                            "w-3.5 h-3.5 flex-shrink-0 transition-all duration-300",
-                            hoveredProject === project.title
-                              ? "text-accent translate-x-0.5"
-                              : "text-accent/50"
-                          )}
-                        />
-                        {outcome}
-                      </motion.li>
+                        <span className="w-1 h-1 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                        <span className="line-clamp-1">{outcome}</span>
+                      </li>
                     ))}
                   </ul>
                 </div>
 
                 {/* Links */}
-                <div className="flex items-center gap-3 pt-4 border-t border-navy-700/50">
+                <div className="flex items-center gap-2 pt-3 mt-auto border-t border-border/50">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-slate-400 hover:text-accent hover:bg-white/5 transition-all duration-200"
+                    className="text-muted-foreground hover:text-accent text-xs h-7 px-2"
                   >
-                    <Github className="w-4 h-4 mr-2" />
-                    View Code
+                    <Github className="w-3 h-3 mr-1" />
+                    Code
                   </Button>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="text-slate-400 hover:text-accent hover:bg-white/5 transition-all duration-200"
+                    className="text-muted-foreground hover:text-accent text-xs h-7 px-2"
                   >
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Live Demo
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    Demo
                   </Button>
                 </div>
               </div>

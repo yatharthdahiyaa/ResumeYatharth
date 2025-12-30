@@ -61,19 +61,18 @@ export const Navigation = () => {
     >
       <div className="section-container">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+          {/* Logo - Name */}
           <motion.a
             href="#"
             className={cn(
-              "text-xl font-bold tracking-tight transition-colors duration-300 font-serif",
+              "text-xl lg:text-2xl font-medium tracking-wide transition-colors duration-300",
               isScrolled ? "text-foreground" : "text-cream-100"
             )}
+            style={{ fontFamily: "'Playfair Display', serif" }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="text-accent">❧</span>
-            {" "}Engineer{" "}
-            <span className="text-accent">❧</span>
+            Manpreet Singh
           </motion.a>
 
           {/* Desktop Navigation */}
