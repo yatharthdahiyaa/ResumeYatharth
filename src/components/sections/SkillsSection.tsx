@@ -92,8 +92,8 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        {/* Skills Grid with enhanced cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Skills Grid - Royal Square Cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -102,73 +102,51 @@ export const SkillsSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className={cn(
-                "relative bg-card rounded-2xl p-6 border border-border transition-all duration-500 group cursor-default overflow-hidden",
-                hoveredIndex === index
-                  ? "shadow-xl shadow-accent/10 border-accent/30 -translate-y-1"
-                  : "hover:shadow-lg"
-              )}
+              className="royal-card group cursor-default overflow-hidden"
             >
-              {/* Gradient overlay on hover */}
-              <div
-                className={cn(
-                  "absolute inset-0 opacity-0 transition-opacity duration-500 bg-gradient-to-br",
-                  category.color,
-                  hoveredIndex === index ? "opacity-[0.03]" : ""
-                )}
-              />
+              {/* Inner ornamental border */}
+              <div className="absolute inset-3 border border-accent/10 pointer-events-none" />
+              
+              {/* Corner ornaments */}
+              <div className="absolute top-2 left-2 w-3 h-3 border-l border-t border-accent/30" />
+              <div className="absolute top-2 right-2 w-3 h-3 border-r border-t border-accent/30" />
+              <div className="absolute bottom-2 left-2 w-3 h-3 border-l border-b border-accent/30" />
+              <div className="absolute bottom-2 right-2 w-3 h-3 border-r border-b border-accent/30" />
 
-              {/* Category Header */}
-              <div className="relative flex items-center gap-4 mb-6">
+              {/* Content */}
+              <div className="relative z-10 h-full flex flex-col">
+                {/* Icon */}
                 <motion.div
-                  className={cn(
-                    "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300",
-                    hoveredIndex === index
-                      ? `bg-gradient-to-br ${category.color}`
-                      : "bg-accent/10"
-                  )}
-                  animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
+                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center mb-4 mx-auto"
+                  animate={hoveredIndex === index ? { scale: 1.1 } : { scale: 1 }}
                 >
-                  <category.icon
-                    className={cn(
-                      "w-6 h-6 transition-colors duration-300",
-                      hoveredIndex === index ? "text-white" : "text-accent"
-                    )}
-                  />
+                  <category.icon className="w-6 h-6 lg:w-7 lg:h-7 text-accent" />
                 </motion.div>
-                <h3 className="text-lg font-semibold text-foreground">
+
+                {/* Title */}
+                <h3 className="text-sm lg:text-base font-semibold text-foreground text-center mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
                   {category.title}
                 </h3>
+
+                {/* Divider */}
+                <div className="w-8 h-px bg-accent/40 mx-auto mb-4" />
+
+                {/* Skills List */}
+                <ul className="space-y-1.5 flex-1">
+                  {category.skills.slice(0, 4).map((skill, skillIndex) => (
+                    <motion.li
+                      key={skill}
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ duration: 0.3, delay: index * 0.1 + skillIndex * 0.05 }}
+                      className="flex items-center gap-2 text-xs lg:text-sm text-muted-foreground group-hover:text-foreground transition-colors"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-accent/50" />
+                      <span className="truncate">{skill}</span>
+                    </motion.li>
+                  ))}
+                </ul>
               </div>
-
-              {/* Skills List with stagger animation */}
-              <ul className="relative space-y-3">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.li
-                    key={skill}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.3, delay: index * 0.1 + skillIndex * 0.05 }}
-                    className="flex items-center gap-3 text-sm text-muted-foreground group/item hover:text-foreground transition-colors"
-                  >
-                    <ChevronRight
-                      className={cn(
-                        "w-3.5 h-3.5 transition-all duration-200",
-                        hoveredIndex === index ? "text-accent translate-x-0.5" : "text-accent/50"
-                      )}
-                    />
-                    <span>{skill}</span>
-                  </motion.li>
-                ))}
-              </ul>
-
-              {/* Bottom accent line */}
-              <motion.div
-                className={cn("absolute bottom-0 left-0 h-0.5 bg-gradient-to-r", category.color)}
-                initial={{ width: "0%" }}
-                animate={{ width: hoveredIndex === index ? "100%" : "0%" }}
-                transition={{ duration: 0.3 }}
-              />
             </motion.div>
           ))}
         </div>
