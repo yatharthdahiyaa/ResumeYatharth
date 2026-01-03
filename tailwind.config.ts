@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Crimson Text', 'Georgia', 'serif'],
-        serif: ['Playfair Display', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
@@ -62,15 +62,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        cream: {
-          DEFAULT: "hsl(var(--cream))",
-        },
-        "blue-light": {
-          DEFAULT: "hsl(var(--blue-light))",
-        },
-        "blue-medium": {
-          DEFAULT: "hsl(var(--blue-medium))",
-        },
+        salt: "hsl(var(--salt))",
+        pepper: "hsl(var(--pepper))",
+        smoke: "hsl(var(--smoke))",
+        silver: "hsl(var(--silver))",
+        "tech-accent": "hsl(var(--tech-accent))",
+        "tech-glow": "hsl(var(--tech-glow))",
       },
       borderRadius: {
         lg: "var(--radius)",

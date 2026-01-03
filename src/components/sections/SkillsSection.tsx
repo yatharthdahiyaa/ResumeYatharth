@@ -7,21 +7,17 @@ import {
   Network,
   LayoutDashboard,
   Wrench,
-  ChevronRight,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const skillCategories = [
   {
     title: "Programming & Software",
     icon: Code,
-    color: "from-blue-500 to-cyan-500",
     skills: ["C / C++", "Python", "SQL / PL-SQL", "JavaScript", "OOP Concepts"],
   },
   {
     title: "Embedded & Hardware",
     icon: Cpu,
-    color: "from-emerald-500 to-teal-500",
     skills: [
       "ESP32",
       "Arduino (Uno, Mega, Nano)",
@@ -33,7 +29,6 @@ const skillCategories = [
   {
     title: "Industrial & Communication",
     icon: Network,
-    color: "from-orange-500 to-amber-500",
     skills: [
       "OPC UA",
       "MODBUS",
@@ -45,7 +40,6 @@ const skillCategories = [
   {
     title: "Web & Dashboards",
     icon: LayoutDashboard,
-    color: "from-violet-500 to-purple-500",
     skills: [
       "Web Development",
       "Dashboard Design",
@@ -56,7 +50,6 @@ const skillCategories = [
   {
     title: "Tools & Platforms",
     icon: Wrench,
-    color: "from-rose-500 to-pink-500",
     skills: ["Git / GitHub", "CubeIDE", "Oracle / MySQL", "Linux / Windows"],
   },
 ];
@@ -79,12 +72,12 @@ export const SkillsSection = () => {
           <motion.span
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-sm font-semibold text-accent uppercase tracking-widest mb-4"
+            className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-sm font-mono font-medium text-accent uppercase tracking-widest mb-4"
           >
-            Technical Expertise
+            &lt;skills /&gt;
           </motion.span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
-            Skills & Technologies
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display">
+            Technical Expertise
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
             A comprehensive toolkit spanning from low-level embedded programming
@@ -92,7 +85,7 @@ export const SkillsSection = () => {
           </p>
         </motion.div>
 
-        {/* Skills Grid - Royal Square Cards */}
+        {/* Skills Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {skillCategories.map((category, index) => (
             <motion.div
@@ -102,47 +95,38 @@ export const SkillsSection = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="royal-card group cursor-default overflow-hidden"
+              className="tech-card group cursor-default"
             >
-              {/* Inner ornamental border */}
-              <div className="absolute inset-3 border border-accent/10 pointer-events-none" />
-              
-              {/* Corner ornaments */}
-              <div className="absolute top-2 left-2 w-3 h-3 border-l border-t border-accent/30" />
-              <div className="absolute top-2 right-2 w-3 h-3 border-r border-t border-accent/30" />
-              <div className="absolute bottom-2 left-2 w-3 h-3 border-l border-b border-accent/30" />
-              <div className="absolute bottom-2 right-2 w-3 h-3 border-r border-b border-accent/30" />
-
               {/* Content */}
               <div className="relative z-10 h-full flex flex-col">
                 {/* Icon */}
                 <motion.div
-                  className="w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center mb-4 mx-auto"
-                  animate={hoveredIndex === index ? { scale: 1.1 } : { scale: 1 }}
+                  className="w-12 h-12 flex items-center justify-center mb-4 mx-auto rounded-lg bg-secondary group-hover:bg-accent/10 transition-colors duration-300"
+                  animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
                 >
-                  <category.icon className="w-6 h-6 lg:w-7 lg:h-7 text-accent" />
+                  <category.icon className="w-6 h-6 text-foreground group-hover:text-accent transition-colors duration-300" />
                 </motion.div>
 
                 {/* Title */}
-                <h3 className="text-sm lg:text-base font-semibold text-foreground text-center mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                <h3 className="text-sm lg:text-base font-semibold text-foreground text-center mb-4 font-display group-hover:text-accent transition-colors duration-300">
                   {category.title}
                 </h3>
 
                 {/* Divider */}
-                <div className="w-8 h-px bg-accent/40 mx-auto mb-4" />
+                <div className="w-12 h-px bg-border mx-auto mb-4 group-hover:bg-accent/50 transition-colors duration-300" />
 
                 {/* Skills List */}
-                <ul className="space-y-1.5 flex-1">
+                <ul className="space-y-2 flex-1">
                   {category.skills.slice(0, 4).map((skill, skillIndex) => (
                     <motion.li
                       key={skill}
                       initial={{ opacity: 0 }}
                       animate={isInView ? { opacity: 1 } : {}}
                       transition={{ duration: 0.3, delay: index * 0.1 + skillIndex * 0.05 }}
-                      className="flex items-center gap-2 text-xs lg:text-sm text-muted-foreground group-hover:text-foreground transition-colors"
+                      className="flex items-center gap-2 text-xs lg:text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
                     >
-                      <span className="w-1 h-1 rounded-full bg-accent/50" />
-                      <span className="truncate">{skill}</span>
+                      <span className="w-1 h-1 rounded-full bg-accent/50 group-hover:bg-accent transition-colors duration-300" />
+                      <span className="truncate font-mono">{skill}</span>
                     </motion.li>
                   ))}
                 </ul>
