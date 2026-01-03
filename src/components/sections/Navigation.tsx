@@ -21,7 +21,6 @@ export const Navigation = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      // Active section detection
       const sections = navItems.map(item => item.href.slice(1));
       const scrollPosition = window.scrollY + 100;
 
@@ -55,20 +54,19 @@ export const Navigation = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-lg shadow-foreground/5 border-b border-border"
+          ? "bg-card/80 backdrop-blur-xl shadow-lg shadow-pepper/5 border-b border-border"
           : "bg-transparent"
       )}
     >
       <div className="section-container">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo - Name */}
+          {/* Logo */}
           <motion.a
             href="#"
             className={cn(
-              "text-xl lg:text-2xl font-medium tracking-wide transition-colors duration-300",
-              isScrolled ? "text-foreground" : "text-cream"
+              "text-xl lg:text-2xl font-semibold tracking-tight transition-colors duration-300 font-display",
+              isScrolled ? "text-foreground" : "text-salt"
             )}
-            style={{ fontFamily: "'Playfair Display', serif" }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -84,21 +82,21 @@ export const Navigation = () => {
                   key={item.label}
                   onClick={() => scrollToSection(item.href)}
                   className={cn(
-                    "relative px-4 py-2 text-sm font-medium transition-all duration-200 tracking-wider",
+                    "relative px-4 py-2 text-sm font-medium transition-all duration-200",
                     isScrolled
                       ? isActive
-                        ? "text-primary"
+                        ? "text-accent"
                         : "text-muted-foreground hover:text-foreground"
                       : isActive
-                        ? "text-blue-light"
-                        : "text-cream/70 hover:text-cream"
+                        ? "text-tech-accent"
+                        : "text-salt/60 hover:text-salt"
                   )}
                 >
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeSection"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -106,10 +104,14 @@ export const Navigation = () => {
               );
             })}
             <Button
-              variant="hero"
               size="sm"
               onClick={() => scrollToSection("#contact")}
-              className="ml-4 bg-blue-medium hover:bg-blue-medium/90 text-cream"
+              className={cn(
+                "ml-4 font-medium",
+                isScrolled 
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "bg-salt text-pepper hover:bg-salt/90"
+              )}
             >
               Get in Touch
             </Button>
@@ -121,7 +123,7 @@ export const Navigation = () => {
             size="icon"
             className={cn(
               "md:hidden",
-              !isScrolled && "text-cream hover:bg-cream/10"
+              !isScrolled && "text-salt hover:bg-salt/10"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -159,9 +161,9 @@ export const Navigation = () => {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="md:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-xl overflow-hidden"
+              className="md:hidden absolute top-full left-0 right-0 bg-card/95 backdrop-blur-xl border-b border-border shadow-xl overflow-hidden"
             >
-              <div className="py-4 px-6 space-y-2">
+              <div className="py-4 px-6 space-y-1">
                 {navItems.map((item, index) => {
                   const isActive = activeSection === item.href.slice(1);
                   return (
@@ -172,14 +174,14 @@ export const Navigation = () => {
                       transition={{ delay: index * 0.05 }}
                       onClick={() => scrollToSection(item.href)}
                       className={cn(
-                        "flex items-center w-full text-left text-base font-medium transition-colors py-3 px-4 rounded tracking-wider",
+                        "flex items-center w-full text-left text-base font-medium transition-colors py-3 px-4 rounded-lg",
                         isActive
-                          ? "text-primary bg-primary/10"
+                          ? "text-accent bg-accent/10"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                       )}
                     >
                       {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent mr-3" />
                       )}
                       {item.label}
                     </motion.button>
@@ -191,8 +193,7 @@ export const Navigation = () => {
                   transition={{ delay: 0.25 }}
                 >
                   <Button
-                    variant="hero"
-                    className="w-full mt-4 bg-blue-medium hover:bg-blue-medium/90 text-cream"
+                    className="w-full mt-4"
                     onClick={() => scrollToSection("#contact")}
                   >
                     Get in Touch

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Download, FolderOpen, Sparkles } from "lucide-react";
+import { Download, FolderOpen, Terminal, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const HeroSection = () => {
@@ -8,50 +8,47 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-foreground">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-pepper grid-pattern">
       {/* Background */}
-      <div className="absolute inset-0 bg-foreground">
-        {/* Subtle gradient overlay */}
+      <div className="absolute inset-0">
+        {/* Gradient overlay */}
         <div 
           className="absolute inset-0"
           style={{
-            background: 'radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%)'
+            background: 'radial-gradient(ellipse at 30% 20%, hsl(180 85% 45% / 0.08) 0%, transparent 50%), radial-gradient(ellipse at 70% 80%, hsl(180 85% 45% / 0.05) 0%, transparent 50%)'
           }}
         />
-        {/* Blue accent glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-blue-medium/20 rounded-full blur-[120px]" />
+        {/* Subtle scan line effect */}
+        <div className="absolute inset-0 scan-line" />
         {/* Bottom border */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-medium/50 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-tech-accent/50 to-transparent" />
       </div>
-
-      {/* Gradient Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-foreground/50 to-transparent" />
 
       <div className="section-container relative z-10 pt-20">
         <div className="max-w-4xl mx-auto text-center">
-          {/* Open to Opportunities Badge */}
+          {/* Terminal-style status */}
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-sm bg-blue-medium/20 border border-blue-medium/40 mb-8"
+            className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-salt/5 border border-silver/20 mb-8 backdrop-blur-sm"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-light opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-light" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-tech-accent opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-tech-accent" />
             </span>
-            <span className="text-sm font-medium text-blue-light uppercase tracking-[0.2em]">
-              Open to Opportunities
+            <span className="text-sm font-mono text-salt/80 tracking-wide">
+              <span className="text-tech-accent">status:</span> open_to_work
             </span>
-            <Sparkles className="w-3.5 h-3.5 text-blue-light" />
+            <Zap className="w-3.5 h-3.5 text-tech-accent" />
           </motion.div>
 
-          {/* Name with styling */}
+          {/* Title */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl lg:text-8xl font-bold text-cream mb-6 tracking-tight font-serif"
+            className="text-5xl sm:text-6xl lg:text-8xl font-bold text-salt mb-6 tracking-tight font-display"
           >
             IT Engineer
           </motion.h1>
@@ -61,19 +58,19 @@ export const HeroSection = () => {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center justify-center gap-4 mb-6"
+            className="flex items-center justify-center gap-4 mb-8"
           >
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-blue-medium/60" />
-            <div className="w-2 h-2 rotate-45 border border-blue-medium/60" />
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-blue-medium/60" />
+            <div className="h-px w-20 bg-gradient-to-r from-transparent to-silver/40" />
+            <Terminal className="w-4 h-4 text-tech-accent" />
+            <div className="h-px w-20 bg-gradient-to-l from-transparent to-silver/40" />
           </motion.div>
 
-          {/* Specializations */}
+          {/* Specializations as tech tags */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-wrap items-center justify-center gap-3 mb-8"
+            className="flex flex-wrap items-center justify-center gap-2 mb-10"
           >
             {["Industry 4.0", "IoT", "Data Acquisition", "Embedded Systems"].map((tag, index) => (
               <motion.span
@@ -81,7 +78,7 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
-                className="px-4 py-1.5 bg-blue-medium/20 border border-blue-light/30 text-sm text-cream tracking-wider"
+                className="px-4 py-2 bg-salt/5 border border-silver/20 text-sm text-salt/70 font-mono tracking-wide hover:border-tech-accent/50 hover:text-tech-accent transition-all duration-300"
               >
                 {tag}
               </motion.span>
@@ -93,11 +90,11 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-lg sm:text-xl text-cream/70 mb-12 max-w-2xl mx-auto leading-relaxed italic"
+            className="text-lg sm:text-xl text-salt/60 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             Building intelligent systems that bridge the gap between industrial
             hardware and modern software.{" "}
-            <span className="text-blue-light not-italic font-medium">
+            <span className="text-tech-accent font-medium">
               Transforming raw data into actionable insights.
             </span>
           </motion.p>
@@ -111,22 +108,21 @@ export const HeroSection = () => {
           >
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
-                variant="hero"
-                size="xl"
+                size="lg"
                 onClick={scrollToProjects}
-                className="group bg-blue-medium hover:bg-blue-medium/90 text-cream"
+                className="group bg-salt text-pepper hover:bg-salt/90 font-medium px-8"
               >
-                <FolderOpen className="w-5 h-5 transition-transform group-hover:rotate-6" />
+                <FolderOpen className="w-5 h-5 mr-2 transition-transform group-hover:rotate-6" />
                 View Projects
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button
-                variant="heroOutline"
-                size="xl"
-                className="border-cream/30 text-cream hover:bg-cream/10 hover:text-cream hover:border-cream/50 group"
+                variant="outline"
+                size="lg"
+                className="border-silver/30 text-salt hover:bg-salt/10 hover:border-tech-accent/50 group font-medium px-8"
               >
-                <Download className="w-5 h-5 transition-transform group-hover:-translate-y-0.5" />
+                <Download className="w-5 h-5 mr-2 transition-transform group-hover:-translate-y-0.5" />
                 Download Resume
               </Button>
             </motion.div>
@@ -137,7 +133,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="mt-20 pt-8 border-t border-cream/15 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+            className="mt-24 pt-8 border-t border-silver/10 grid grid-cols-3 gap-8 max-w-lg mx-auto"
           >
             {[
               { value: "4+", label: "Projects" },
@@ -149,10 +145,10 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.9 + index * 0.1 }}
-                className="text-center"
+                className="text-center group"
               >
-                <p className="text-2xl sm:text-3xl font-bold text-blue-light font-serif">{stat.value}</p>
-                <p className="text-xs sm:text-sm text-cream/50 mt-1 uppercase tracking-[0.15em]">{stat.label}</p>
+                <p className="text-3xl sm:text-4xl font-bold text-salt font-display group-hover:text-tech-accent transition-colors duration-300">{stat.value}</p>
+                <p className="text-xs sm:text-sm text-smoke mt-2 uppercase tracking-[0.2em] font-mono">{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
