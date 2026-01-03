@@ -55,7 +55,7 @@ export const Navigation = () => {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-card/95 backdrop-blur-md shadow-lg shadow-sepia-900/10 border-b border-border"
+          ? "bg-card/95 backdrop-blur-md shadow-lg shadow-foreground/5 border-b border-border"
           : "bg-transparent"
       )}
     >
@@ -66,7 +66,7 @@ export const Navigation = () => {
             href="#"
             className={cn(
               "text-xl lg:text-2xl font-medium tracking-wide transition-colors duration-300",
-              isScrolled ? "text-foreground" : "text-cream-100"
+              isScrolled ? "text-foreground" : "text-cream"
             )}
             style={{ fontFamily: "'Playfair Display', serif" }}
             whileHover={{ scale: 1.02 }}
@@ -87,18 +87,18 @@ export const Navigation = () => {
                     "relative px-4 py-2 text-sm font-medium transition-all duration-200 tracking-wider",
                     isScrolled
                       ? isActive
-                        ? "text-accent"
+                        ? "text-primary"
                         : "text-muted-foreground hover:text-foreground"
                       : isActive
-                        ? "text-amber-400"
-                        : "text-cream-300/70 hover:text-cream-100"
+                        ? "text-blue-light"
+                        : "text-cream/70 hover:text-cream"
                   )}
                 >
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeSection"
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-accent"
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -109,7 +109,7 @@ export const Navigation = () => {
               variant="hero"
               size="sm"
               onClick={() => scrollToSection("#contact")}
-              className="ml-4 bg-amber-500 hover:bg-amber-600 text-sepia-950"
+              className="ml-4 bg-blue-medium hover:bg-blue-medium/90 text-cream"
             >
               Get in Touch
             </Button>
@@ -121,7 +121,7 @@ export const Navigation = () => {
             size="icon"
             className={cn(
               "md:hidden",
-              !isScrolled && "text-cream-100 hover:bg-cream-100/10"
+              !isScrolled && "text-cream hover:bg-cream/10"
             )}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -174,12 +174,12 @@ export const Navigation = () => {
                       className={cn(
                         "flex items-center w-full text-left text-base font-medium transition-colors py-3 px-4 rounded tracking-wider",
                         isActive
-                          ? "text-accent bg-accent/10"
+                          ? "text-primary bg-primary/10"
                           : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                       )}
                     >
                       {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-accent mr-3" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary mr-3" />
                       )}
                       {item.label}
                     </motion.button>
@@ -192,7 +192,7 @@ export const Navigation = () => {
                 >
                   <Button
                     variant="hero"
-                    className="w-full mt-4 bg-amber-500 hover:bg-amber-600 text-sepia-950"
+                    className="w-full mt-4 bg-blue-medium hover:bg-blue-medium/90 text-cream"
                     onClick={() => scrollToSection("#contact")}
                   >
                     Get in Touch
