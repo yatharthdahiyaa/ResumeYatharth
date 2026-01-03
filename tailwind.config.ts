@@ -62,25 +62,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        sepia: {
-          950: "hsl(var(--sepia-950))",
-          900: "hsl(var(--sepia-900))",
-          800: "hsl(var(--sepia-800))",
-          700: "hsl(var(--sepia-700))",
-          600: "hsl(var(--sepia-600))",
-        },
-        amber: {
-          400: "hsl(var(--amber-400))",
-          500: "hsl(var(--amber-500))",
-          600: "hsl(var(--amber-600))",
-        },
         cream: {
-          50: "hsl(var(--cream-50))",
-          100: "hsl(var(--cream-100))",
-          200: "hsl(var(--cream-200))",
-          300: "hsl(var(--cream-300))",
-          400: "hsl(var(--cream-400))",
-          500: "hsl(var(--cream-500))",
+          DEFAULT: "hsl(var(--cream))",
+        },
+        "blue-light": {
+          DEFAULT: "hsl(var(--blue-light))",
+        },
+        "blue-medium": {
+          DEFAULT: "hsl(var(--blue-medium))",
         },
       },
       borderRadius: {
