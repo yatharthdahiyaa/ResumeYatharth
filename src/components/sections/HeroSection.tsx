@@ -230,19 +230,26 @@ export const HeroSection = () => {
               whileHover={{ scale: 1.05, y: -2 }} 
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400 }}
+              animate={{ 
+                boxShadow: [
+                  "0 0 20px hsl(180 85% 45% / 0.2)",
+                  "0 0 30px hsl(180 85% 45% / 0.4)",
+                  "0 0 20px hsl(180 85% 45% / 0.2)",
+                ]
+              }}
+              className="rounded-md"
             >
               <Button
                 variant="outline"
                 size="lg"
-                className="border-silver/30 text-salt hover:bg-salt/10 hover:border-tech-accent/50 group font-medium px-8 relative overflow-hidden"
+                className="border-tech-accent/50 text-salt bg-tech-accent/10 font-medium px-8 relative overflow-hidden"
               >
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-tech-accent/10 to-transparent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 bg-gradient-to-r from-tech-accent/20 to-transparent"
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                 />
-                <Download className="w-5 h-5 mr-2 transition-transform group-hover:-translate-y-0.5" />
+                <Download className="w-5 h-5 mr-2" />
                 Download Resume
               </Button>
             </motion.div>
