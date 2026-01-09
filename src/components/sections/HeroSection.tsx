@@ -229,24 +229,13 @@ export const HeroSection = () => {
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }} 
               whileTap={{ scale: 0.95 }}
-              animate={{ 
-                boxShadow: [
-                  "0 0 20px hsl(180 85% 45% / 0.2)",
-                  "0 0 30px hsl(180 85% 45% / 0.4)",
-                  "0 0 20px hsl(180 85% 45% / 0.2)",
-                ]
-              }}
-              transition={{ 
-                boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                scale: { type: "spring", stiffness: 400 },
-                y: { type: "spring", stiffness: 400 }
-              }}
+              transition={{ type: "spring", stiffness: 400 }}
               className="rounded-md"
             >
               <Button
                 variant="outline"
                 size="lg"
-                className="border-tech-accent/50 text-salt bg-tech-accent/10 font-medium px-8 relative overflow-hidden"
+                className="border-tech-accent/50 text-salt bg-tech-accent/10 font-medium px-8 relative overflow-hidden animate-pulse-glow"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-tech-accent/20 to-transparent"
