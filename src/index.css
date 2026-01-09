@@ -256,4 +256,17 @@
   .animate-pulse-glow {
     animation: pulse-glow 2s ease-in-out infinite;
   }
+
+  @keyframes pulse-border {
+    0%, 100% {
+      border-color: hsl(180 85% 45% / 0.2);
+    }
+    50% {
+      border-color: hsl(180 85% 45% / 0.5);
+    }
+  }
+
+  .animate-pulse-border {
+    animation: pulse-border 2s ease-in-out infinite;
+  }
 }

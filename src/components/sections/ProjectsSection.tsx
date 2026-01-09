@@ -182,16 +182,10 @@ export const ProjectsSection = () => {
               className="tech-card group relative"
             >
               {/* Animated border glow */}
-              <motion.div
-                className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 pointer-events-none"
-                animate={hoveredProject === project.title ? {
-                  boxShadow: [
-                    "0 0 20px hsl(180 85% 45% / 0.1)",
-                    "0 0 40px hsl(180 85% 45% / 0.2)",
-                    "0 0 20px hsl(180 85% 45% / 0.1)",
-                  ]
-                } : {}}
-                transition={{ duration: 2, repeat: Infinity }}
+              <div
+                className={`absolute inset-0 rounded-lg pointer-events-none transition-opacity duration-300 ${
+                  hoveredProject === project.title ? 'opacity-100 animate-pulse-glow' : 'opacity-0'
+                }`}
               />
 
               {/* Featured Badge with animation */}
@@ -202,16 +196,12 @@ export const ProjectsSection = () => {
                   animate={isInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ delay: 0.5 + index * 0.1, type: "spring" }}
                 >
-                  <motion.span 
-                    className="px-2 py-1 text-[10px] font-mono font-medium uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 rounded flex items-center gap-1"
-                    animate={{ 
-                      borderColor: ["hsl(180 85% 45% / 0.2)", "hsl(180 85% 45% / 0.5)", "hsl(180 85% 45% / 0.2)"]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
+                  <span 
+                    className="px-2 py-1 text-[10px] font-mono font-medium uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 rounded flex items-center gap-1 animate-pulse-border"
                   >
                     <Sparkles className="w-3 h-3" />
                     featured
-                  </motion.span>
+                  </span>
                 </motion.div>
               )}
 
