@@ -229,13 +229,17 @@ export const HeroSection = () => {
             <motion.div 
               whileHover={{ scale: 1.05, y: -2 }} 
               whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 400 }}
               animate={{ 
                 boxShadow: [
                   "0 0 20px hsl(180 85% 45% / 0.2)",
                   "0 0 30px hsl(180 85% 45% / 0.4)",
                   "0 0 20px hsl(180 85% 45% / 0.2)",
                 ]
+              }}
+              transition={{ 
+                boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                scale: { type: "spring", stiffness: 400 },
+                y: { type: "spring", stiffness: 400 }
               }}
               className="rounded-md"
             >
