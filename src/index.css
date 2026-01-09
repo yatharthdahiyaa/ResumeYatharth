@@ -243,4 +243,17 @@
   .duration-400 {
     transition-duration: 400ms;
   }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(180 85% 45% / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 30px hsl(180 85% 45% / 0.4);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
 }
