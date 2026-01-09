@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Cpu, Database, Globe, Layers, Zap } from "lucide-react";
 
 const interests = [
-  { icon: Layers, label: "Industry 4.0" },
-  { icon: Cpu, label: "IoT Systems" },
-  { icon: Database, label: "Data Acquisition" },
-  { icon: Zap, label: "Embedded Systems" },
-  { icon: Globe, label: "Web Dashboards" },
+  { icon: Layers, label: "Industry 4.0", slug: "industry-4-0" },
+  { icon: Cpu, label: "IoT Systems", slug: "iot-systems" },
+  { icon: Database, label: "Data Acquisition", slug: "data-acquisition" },
+  { icon: Zap, label: "Embedded Systems", slug: "embedded-systems" },
+  { icon: Globe, label: "Web Dashboards", slug: "web-dashboards" },
 ];
 
 const containerVariants = {
@@ -38,6 +39,7 @@ export const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hoveredInterest, setHoveredInterest] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   return (
     <section id="about" className="section-padding bg-card relative overflow-hidden" ref={ref}>
@@ -112,7 +114,7 @@ export const AboutSection = () => {
 
             {/* Education Badge with animation */}
             <motion.div 
-              className="mt-8 p-4 bg-secondary rounded-lg border border-border relative overflow-hidden"
+              className="mt-8 p-4 bg-secondary rounded-lg border border-border relative overflow-hidden cursor-pointer"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1 }}
@@ -121,6 +123,8 @@ export const AboutSection = () => {
                 borderColor: "hsl(180 85% 45% / 0.3)",
                 transition: { duration: 0.3 }
               }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => navigate("/interest/academic-background")}
             >
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-accent/5 to-transparent"
@@ -134,7 +138,10 @@ export const AboutSection = () => {
               <p className="text-base font-semibold text-foreground mt-1 relative z-10">
                 B.E. Information Technology
               </p>
-              <p className="text-sm text-muted-foreground relative z-10">Class of 2026</p>
+              <div className="flex items-center justify-between relative z-10">
+                <p className="text-sm text-muted-foreground">Class of 2026</p>
+                <span className="text-xs text-accent font-medium">Click to learn more →</span>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -187,7 +194,9 @@ export const AboutSection = () => {
                       x: 10,
                       transition: { duration: 0.2 }
                     }}
-                    className="flex items-center gap-4 p-4 bg-secondary/10 rounded-lg group hover:bg-secondary/20 transition-colors cursor-default"
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => navigate(`/interest/${interest.slug}`)}
+                    className="flex items-center gap-4 p-4 bg-secondary/10 rounded-lg group hover:bg-secondary/20 transition-colors cursor-pointer"
                   >
                     <motion.div 
                       className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors"
@@ -204,12 +213,19 @@ export const AboutSection = () => {
                         <interest.icon className="w-6 h-6 text-accent" />
                       </motion.div>
                     </motion.div>
-                    <motion.span 
-                      className="text-base font-medium text-primary-foreground"
-                      animate={hoveredInterest === index ? { x: 5 } : { x: 0 }}
-                    >
-                      {interest.label}
-                    </motion.span>
+                    <div className="flex-1">
+                      <motion.span 
+                        className="text-base font-medium text-primary-foreground block"
+                        animate={hoveredInterest === index ? { x: 5 } : { x: 0 }}
+                      >
+                        {interest.label}
+                      </motion.span>
+                      <motion.span
+                        className="text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        Click to explore →
+                      </motion.span>
+                    </div>
                   </motion.div>
                 ))}
               </motion.div>
