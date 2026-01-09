@@ -184,7 +184,7 @@ const InterestDetail = () => {
           x: [0, 30, 0],
           y: [0, -20, 0],
         }}
-        transition={{ duration: 10, repeat: Infinity }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         className="absolute bottom-20 left-10 w-64 h-64 rounded-full"
@@ -193,7 +193,7 @@ const InterestDetail = () => {
           scale: [1, 1.3, 1],
           y: [0, 30, 0],
         }}
-        transition={{ duration: 8, repeat: Infinity, delay: 1 }}
+        transition={{ duration: 8, repeat: Infinity, delay: 1, ease: "easeInOut" }}
       />
 
       {/* Header */}

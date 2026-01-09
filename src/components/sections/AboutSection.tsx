@@ -159,14 +159,9 @@ export const AboutSection = () => {
               }}
             >
               {/* Animated glow */}
-              <motion.div
-                className="absolute top-0 right-0 w-32 h-32 rounded-full"
+              <div
+                className="absolute top-0 right-0 w-32 h-32 rounded-full animate-glow-pulse pointer-events-none"
                 style={{ background: 'radial-gradient(circle, hsl(180 85% 45% / 0.2) 0%, transparent 70%)' }}
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 1, 0.5],
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
               />
 
               <motion.h3 

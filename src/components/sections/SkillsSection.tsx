@@ -98,7 +98,7 @@ export const SkillsSection = () => {
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.6, 0.3],
         }}
-        transition={{ duration: 8, repeat: Infinity }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       
       <div className="section-container relative z-10">
