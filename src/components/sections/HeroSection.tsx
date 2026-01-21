@@ -168,13 +168,8 @@ export const HeroSection = () => {
                   type: "spring",
                   stiffness: 200
                 }}
-                whileHover={{ 
-                  scale: 1.1,
-                  borderColor: "hsl(180 85% 45%)",
-                  boxShadow: "0 0 20px hsl(180 85% 45% / 0.3)",
-                  transition: { duration: 0.2 }
-                }}
-                className="px-4 py-2 bg-salt/5 border border-silver/20 text-sm text-salt/70 font-mono tracking-wide cursor-default transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                className="px-4 py-2 bg-salt/5 border border-silver/20 text-sm text-salt/70 font-mono tracking-wide cursor-default transition-all duration-300 hover:border-tech-accent hover:shadow-[0_0_20px_hsl(180_85%_45%/0.3)]"
               >
                 {tag}
               </motion.span>
