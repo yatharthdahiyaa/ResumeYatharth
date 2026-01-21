@@ -118,11 +118,7 @@ export const AboutSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 1 }}
-              whileHover={{ 
-                scale: 1.02,
-                borderColor: "hsl(180 85% 45% / 0.3)",
-                transition: { duration: 0.3 }
-              }}
+              whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate("/interest/academic-background")}
             >
@@ -152,11 +148,7 @@ export const AboutSection = () => {
             transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 80 }}
           >
             <motion.div 
-              className="bg-primary rounded-2xl p-8 lg:p-10 relative overflow-hidden"
-              whileHover={{ 
-                boxShadow: "0 25px 50px -12px hsl(180 85% 45% / 0.15)",
-                transition: { duration: 0.3 }
-              }}
+              className="bg-primary rounded-2xl p-8 lg:p-10 relative overflow-hidden transition-shadow duration-300 hover:shadow-[0_25px_50px_-12px_hsl(180_85%_45%/0.15)]"
             >
               {/* Animated glow */}
               <div

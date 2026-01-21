@@ -378,12 +378,8 @@ const InterestDetail = () => {
                 <motion.div
                   key={project.title}
                   variants={itemVariants}
-                  className="p-6 bg-card rounded-xl border border-border hover:border-accent/30 transition-all group"
-                  whileHover={{ 
-                    y: -5, 
-                    boxShadow: "0 20px 40px -15px hsl(180 85% 45% / 0.15)",
-                    transition: { duration: 0.3 }
-                  }}
+                  className="p-6 bg-card rounded-xl border border-border hover:border-accent/30 transition-all group hover:shadow-[0_20px_40px_-15px_hsl(180_85%_45%/0.15)]"
+                  whileHover={{ y: -5 }}
                 >
                   <motion.div
                     className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4"
