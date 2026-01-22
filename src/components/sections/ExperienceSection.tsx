@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Award, Users, Target, Lightbulb } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Award, Users, Target, Lightbulb, ArrowRight } from "lucide-react";
 
 const highlights = [
   {
@@ -33,6 +34,7 @@ const highlights = [
 export const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const navigate = useNavigate();
 
   return (
     <section id="experience" className="section-padding bg-card" ref={ref}>
@@ -43,11 +45,18 @@ export const ExperienceSection = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
+            className="cursor-pointer group"
+            onClick={() => navigate("/experience")}
+            whileHover={{ scale: 1.01 }}
+            whileTap={{ scale: 0.99 }}
           >
-            <span className="text-sm font-semibold text-accent uppercase tracking-widest">
-              Experience & Leadership
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mt-3 mb-6">
+            <div className="flex items-center justify-between mb-3">
+              <span className="text-sm font-semibold text-accent uppercase tracking-widest">
+                Experience & Leadership
+              </span>
+              <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-accent group-hover:translate-x-1 transition-all" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 group-hover:text-accent transition-colors">
               PSCST Capstone Project Lead
             </h2>
             <p className="text-sm text-muted-foreground mb-2">2025 – 2026</p>
