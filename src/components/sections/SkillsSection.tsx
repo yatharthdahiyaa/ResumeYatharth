@@ -66,15 +66,15 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 60,
-    rotateX: -15,
+  hidden: {
+    opacity: 0,
+    y: 30,
+    scale: 0.95,
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    rotateX: 0,
+    scale: 1,
     transition: {
       type: "spring",
       stiffness: 100,
@@ -87,6 +87,15 @@ export const SkillsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
 
   return (
     <section id="skills" className="section-padding bg-background relative overflow-hidden" ref={ref}>
@@ -100,7 +109,7 @@ export const SkillsSection = () => {
         }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
-      
+
       <div className="section-container relative z-10">
         {/* Section Header */}
         <motion.div
@@ -122,7 +131,7 @@ export const SkillsSection = () => {
               &lt;skills /&gt;
             </motion.span>
           </motion.span>
-          <motion.h2 
+          <motion.h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -140,7 +149,7 @@ export const SkillsSection = () => {
               </motion.span>
             ))}
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : {}}
@@ -152,11 +161,12 @@ export const SkillsSection = () => {
         </motion.div>
 
         {/* Skills Grid */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
+          onMouseMove={handleMouseMove}
         >
           {skillCategories.map((category, index) => (
             <motion.div
@@ -164,18 +174,25 @@ export const SkillsSection = () => {
               variants={cardVariants}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{ 
-                y: -8,
-                transition: { duration: 0.3, type: "spring", stiffness: 300 }
+              whileHover={{
+                y: -5,
+                transition: { duration: 0.2 }
               }}
-              className="tech-card group cursor-default relative"
-              style={{ perspective: "1000px" }}
+              className="tech-card group cursor-default relative overflow-hidden"
             >
+              {/* Spotlight Effect */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{
+                  background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(45, 212, 191, 0.06), transparent 40%)`,
+                }}
+              />
+
               {/* Glow effect on hover */}
               <motion.div
                 className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{
-                  background: 'radial-gradient(circle at center, hsl(180 85% 45% / 0.1) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle at center, hsl(180 85% 45% / 0.05) 0%, transparent 70%)',
                 }}
               />
 
@@ -184,7 +201,7 @@ export const SkillsSection = () => {
                 {/* Icon with rotation animation */}
                 <motion.div
                   className="w-12 h-12 flex items-center justify-center mb-4 mx-auto rounded-lg bg-secondary group-hover:bg-accent/10 transition-colors duration-300"
-                  animate={hoveredIndex === index ? { 
+                  animate={hoveredIndex === index ? {
                     scale: 1.1,
                     rotate: [0, -5, 5, 0],
                   } : { scale: 1, rotate: 0 }}
@@ -199,7 +216,7 @@ export const SkillsSection = () => {
                 </motion.div>
 
                 {/* Title */}
-                <motion.h3 
+                <motion.h3
                   className="text-sm lg:text-base font-semibold text-foreground text-center mb-4 font-display group-hover:text-accent transition-colors duration-300"
                   animate={hoveredIndex === index ? { scale: 1.05 } : { scale: 1 }}
                 >
@@ -207,7 +224,7 @@ export const SkillsSection = () => {
                 </motion.h3>
 
                 {/* Animated Divider */}
-                <motion.div 
+                <motion.div
                   className="h-px bg-border mx-auto mb-4 group-hover:bg-accent/50 transition-colors duration-300"
                   animate={hoveredIndex === index ? { width: "80%" } : { width: "3rem" }}
                   transition={{ duration: 0.3 }}
@@ -218,16 +235,16 @@ export const SkillsSection = () => {
                   {category.skills.slice(0, 4).map((skill, skillIndex) => (
                     <motion.li
                       key={skill}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: -10 }}
                       animate={isInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ 
-                        duration: 0.4, 
-                        delay: 0.5 + index * 0.1 + skillIndex * 0.05 
+                      transition={{
+                        duration: 0.4,
+                        delay: 0.3 + index * 0.1 + skillIndex * 0.05
                       }}
-                      whileHover={{ x: 5, transition: { duration: 0.2 } }}
+                      whileHover={{ x: 5, color: "hsl(180 85% 45%)", transition: { duration: 0.2 } }}
                       className="flex items-center gap-2 text-xs lg:text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300"
                     >
-                      <motion.span 
+                      <motion.span
                         className="w-1 h-1 rounded-full bg-accent/50 group-hover:bg-accent transition-colors duration-300"
                         animate={hoveredIndex === index ? { scale: [1, 1.5, 1] } : { scale: 1 }}
                         transition={{ duration: 0.3, delay: skillIndex * 0.05 }}

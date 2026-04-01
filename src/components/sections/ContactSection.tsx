@@ -12,14 +12,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "engineer@example.com",
-    href: "mailto:engineer@example.com",
+    value: "infoyatharthdahiyaa@gmail.com",
+    href: "mailto:infoyatharthdahiyaa@gmail.com",
   },
   {
     icon: Phone,
     label: "Phone",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "+91 829 599 3664 ",
+    href: "tel:+918295993664",
   },
   {
     icon: Linkedin,

@@ -30,14 +30,17 @@ export const ResumeSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="hero" size="xl">
-              <Download className="w-5 h-5" />
-              Download PDF
-            </Button>
+            <a href="/resume.pdf" download="Yatharth_Dahiya_Resume.pdf">
+              <Button variant="hero" size="xl">
+                <Download className="w-5 h-5" />
+                Download PDF
+              </Button>
+            </a>
             <Button
               variant="heroOutline"
               size="xl"
               className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-primary-foreground hover:border-slate-500"
+              onClick={() => window.open("/resume.pdf", "_blank")}
             >
               <Eye className="w-5 h-5" />
               View Online

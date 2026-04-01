@@ -130,11 +130,6 @@ export const Footer = () => {
             <p className="text-sm text-slate-500">
               © {currentYear} All rights reserved.
             </p>
-            <p className="text-sm text-slate-500 flex items-center gap-1.5">
-              Built with
-              <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500" />
-              using React & Tailwind
-            </p>
           </div>
         </div>
       </div>

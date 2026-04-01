@@ -127,6 +127,12 @@
   code, pre {
     font-family: 'JetBrains Mono', monospace;
   }
+
+  @media (min-width: 768px) {
+    body, a, button, [role="button"], input, select, textarea, .cursor-pointer {
+      cursor: none !important;
+    }
+  }
 }
 
 @layer components {
